@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "OxZc0xl82e7FGH3sp8TcfN3r9Rln1aToJ4nK54AJOAYiux/D+ivffXj9BAbHzW5qFqtNbRl0BbXQ2wC/94ZFOw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\44791\\Documents\\Year 2\\Semester 2\\Functional Programming CW1\\Functional Programming CW1\\Functional Programming CW1.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\44791\\.nuget\\packages\\fsharp.core\\7.0.401\\fsharp.core.7.0.401.nupkg.sha512"
+  ],
+  "logs": []
+}

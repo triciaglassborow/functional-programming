@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Functional_Programming_CW1</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Assignment.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>

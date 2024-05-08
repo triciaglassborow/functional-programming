@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\44791\\Documents\\Year 2\\Semester 2\\Functional Programming CW1\\Functional Programming CW1\\Functional Programming CW1.fsproj": {}
+    "C:\\Users\\44791\\Source\\Repos\\functional-programming1\\Functional Programming CW1\\Functional Programming CW1\\Functional Programming CW1.fsproj": {}
   },
   "projects": {
-    "C:\\Users\\44791\\Documents\\Year 2\\Semester 2\\Functional Programming CW1\\Functional Programming CW1\\Functional Programming CW1.fsproj": {
+    "C:\\Users\\44791\\Source\\Repos\\functional-programming1\\Functional Programming CW1\\Functional Programming CW1\\Functional Programming CW1.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\44791\\Documents\\Year 2\\Semester 2\\Functional Programming CW1\\Functional Programming CW1\\Functional Programming CW1.fsproj",
+        "projectUniqueName": "C:\\Users\\44791\\Source\\Repos\\functional-programming1\\Functional Programming CW1\\Functional Programming CW1\\Functional Programming CW1.fsproj",
         "projectName": "Functional Programming CW1",
-        "projectPath": "C:\\Users\\44791\\Documents\\Year 2\\Semester 2\\Functional Programming CW1\\Functional Programming CW1\\Functional Programming CW1.fsproj",
+        "projectPath": "C:\\Users\\44791\\Source\\Repos\\functional-programming1\\Functional Programming CW1\\Functional Programming CW1\\Functional Programming CW1.fsproj",
         "packagesPath": "C:\\Users\\44791\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\44791\\Documents\\Year 2\\Semester 2\\Functional Programming CW1\\Functional Programming CW1\\obj\\",
+        "outputPath": "C:\\Users\\44791\\Source\\Repos\\functional-programming1\\Functional Programming CW1\\Functional Programming CW1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

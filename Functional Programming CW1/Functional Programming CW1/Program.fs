@@ -1,6 +1,6 @@
 ﻿module Program
 open System
 
-Assignment.Task123.run()
+Assignment.Task123.Run()
 
-Assignment.Task4.run()
+Assignment.Task4.Run()

@@ -9,16 +9,13 @@ module Task123 =
     //defining a type named account with an accountNumber (string) and balance (float) field.
     type Account = 
         {
-            Name: string 
+            AccountNumber: string 
             mutable Balance: float
         }
 
         //Print member
         member this.Print =
-            Console.WriteLine($"Account Name: {this.Name} Account Balance: {this.Balance}")
-        //update account balance method
-        member this.UpdateBalance newAccountBalance =
-            {this with Balance = newAccountBalance}
+            Console.WriteLine($"Account Name: {this.AccountNumber} Account Balance: {this.Balance}")
         
     //withdraw method
     let Withdraw (account :Account) = 
@@ -28,10 +25,9 @@ module Task123 =
         Console.Write("Enter amount to be withdrawn: ")
         let amount = float(Console.ReadLine())
 
-        let newBalance = account.Balance - amount
-    
         //checking that the user enters a positive number
         if (amount > 0) then
+            let newBalance = account.Balance - amount
             //checking the account has the funds, before withdrawing
             if (newBalance < 0.0) then printfn "Not enough funds"
             else account.Balance <- newBalance
@@ -64,23 +60,23 @@ module Task123 =
     //compairing the balance passed to see if the balance is high, okay or low
     let CheckAccount balance =
         match balance with
-        | b when b > 100.00 -> printfn "Balance is high"
-        | b when b >= 10.00 -> printfn "Balance is okay"
-        | b when b < 10.00 -> printfn "Balance is low"
+        | x when x > 100.00 -> printfn "Balance is high"
+        | x when x >= 10.00 -> printfn "Balance is okay"
+        | x when x < 10.00 -> printfn "Balance is low"
         | _ -> printfn "Invalid"
         
 
     // -------------------------------------------------------------------------------------- //
     //                                         RUN METHOD                                     //
     // -------------------------------------------------------------------------------------- //
-    let run() =
+    let Run() =
         //creating the accounts
-        let Account1 = {Name = "0001"; Balance = 0.0}
-        let Account2 = {Name = "0002"; Balance = 51.0}
-        let Account3 = {Name = "0003"; Balance = 5.0}
-        let Account4 = {Name = "0004"; Balance = 100.0}
-        let Account5 = {Name = "0005"; Balance = 110.0}
-        let Account6 = {Name = "0006"; Balance = 10.0}
+        let Account1 = {AccountNumber = "0001"; Balance = 0.0}
+        let Account2 = {AccountNumber = "0002"; Balance = 51.0}
+        let Account3 = {AccountNumber = "0003"; Balance = 5.0}
+        let Account4 = {AccountNumber = "0004"; Balance = 100.0}
+        let Account5 = {AccountNumber = "0005"; Balance = 110.0}
+        let Account6 = {AccountNumber = "0006"; Balance = 10.0}
 
         // -------------------------------------------------------------------------------------- //
         //                                         TASK 3                                         //
@@ -113,18 +109,20 @@ module Task123 =
         let withdrawAccName = "000" + string(withdrawAccSelect)  
 
         match withdrawAccName with
-        | x when x = Account1.Name -> Withdraw Account1
-        | x when x = Account2.Name -> Withdraw Account2
-        | x when x = Account3.Name -> Withdraw Account3
-        | x when x = Account4.Name -> Withdraw Account4
-        | x when x = Account5.Name -> Withdraw Account5
-        | x when x = Account6.Name -> Withdraw Account6
+        | x when x = Account1.AccountNumber -> Withdraw Account1
+        | x when x = Account2.AccountNumber -> Withdraw Account2
+        | x when x = Account3.AccountNumber -> Withdraw Account3
+        | x when x = Account4.AccountNumber -> Withdraw Account4
+        | x when x = Account5.AccountNumber -> Withdraw Account5
+        | x when x = Account6.AccountNumber -> Withdraw Account6
         | _ -> printfn "Invalid"
 
         Console.WriteLine()
+        
         Console.WriteLine ("-------------------- DEPOSIT --------------------")
         Console.Write("Which account would you like to deposit to (1-6): ")
         let mutable depositAccSelect = int(Console.ReadLine())
+
         while depositAccSelect > 6 || depositAccSelect <= 0 do
             printfn"INVALID ACCOUNT NAME"
             Console.Write("Which account would you like to deposit to (1-6): ")
@@ -134,14 +132,15 @@ module Task123 =
 
 
         match depositAccName with
-        | x when x = Account1.Name -> Deposit Account1
-        | x when x = Account2.Name -> Deposit Account2
-        | x when x = Account3.Name -> Deposit Account3
-        | x when x = Account4.Name -> Deposit Account4
-        | x when x = Account5.Name -> Deposit Account5
-        | x when x = Account6.Name -> Deposit Account6
+        | x when x = Account1.AccountNumber -> Deposit Account1
+        | x when x = Account2.AccountNumber -> Deposit Account2
+        | x when x = Account3.AccountNumber -> Deposit Account3
+        | x when x = Account4.AccountNumber -> Deposit Account4
+        | x when x = Account5.AccountNumber -> Deposit Account5
+        | x when x = Account6.AccountNumber -> Deposit Account6
         | _ -> printfn "Invalid"
         
+
         //task 2 output
         Console.WriteLine()
         Console.WriteLine ("--- LIST ALL ACCOUNTS PLUS QUICK CHECK BALANCE ---")
@@ -195,21 +194,27 @@ module Task4 =
         Console.Write("Enter customer name: ")
         let customerName = Console.ReadLine()
 
-        //asking what seat they want
-        Console.Write("Enter the seat: ")
-        //mutable so it can be updated to a valid seat if they don't enter one to begin with
-        let mutable selectedSeat = int(Console.ReadLine())
 
-        //while they input an invalid seat, they will continue to be asked for a seat
-        while (selectedSeat <= 0 || selectedSeat > 10) do
-            printfn "INVALID SEAT"
+        // recursive function
+        let rec SelectSeat() = 
+            //asking what seat they want
             Console.Write("Enter the seat: ")
-            selectedSeat <- int(Console.ReadLine())
+            //mutable so it can be updated to a valid seat if they don't enter one to begin with
+            let selectedSeat = int(Console.ReadLine())
+            if selectedSeat <= 0 || selectedSeat > 10 then //recusive case
+                printfn "INVALID SEAT"
+                SelectSeat()
+            else //base case
+                selectedSeat
+        
+        //seat confimed to be a vaild number
+        let confirmedSeat = SelectSeat()
             
         //making the number of the seat selected line up with its postition in the list
-        let selectedTicket =  tickets.[selectedSeat - 1]
+        let selectedTicket =  tickets.[confirmedSeat - 1]
 
         Console.WriteLine()
+        
         
         //checking the Ticket has a blank customer name, so it can be booked
         if selectedTicket.customer = "" then
@@ -239,7 +244,7 @@ module Task4 =
     // -------------------------------------------------------------------------------------- //
     //                                         RUN METHOD                                     //
     // -------------------------------------------------------------------------------------- //
-    let run() =
+    let Run() =
         Console.WriteLine()
         //threads run at the same time
         let thread1 = new Thread(fun() -> TaskFunction "THREAD 1 ")
@@ -247,7 +252,7 @@ module Task4 =
         let thread2 = new Thread(fun() -> TaskFunction "THREAD 2 ")
         thread2.Start()
 
-        //wait for both for finish
+        //wait for both to finish
         thread1.Join()
         thread2.Join()
 

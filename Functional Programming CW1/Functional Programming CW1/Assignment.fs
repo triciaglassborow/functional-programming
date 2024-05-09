@@ -96,17 +96,21 @@ module Task123 =
             i.Print
 
         //task 1 output
+
+        // recursive function
+        let rec SelectAccount() = 
+            //asking what account they want
+            Console.Write("Enter account number: (1-6) ")
+            let selectedAccount = int(Console.ReadLine())
+            if selectedAccount <= 0 || selectedAccount > 6 then //recusive case
+                printfn "INVALID ACCOUNT NAME"
+                SelectAccount()
+            else //base case
+                selectedAccount
+
         Console.WriteLine()
-        Console.WriteLine ("-------------------- WITHDRAW --------------------")
-        Console.Write("Which account would you like to withdraw from (1-6): ")
-        let mutable withdrawAccSelect = int(Console.ReadLine())
-
-        while withdrawAccSelect > 6 || withdrawAccSelect <= 0 do
-            printfn"INVALID ACCOUNT NAME"
-            Console.Write("Which account would you like to deposit to (1-6): ")
-            withdrawAccSelect <- int(Console.ReadLine())
-
-        let withdrawAccName = "000" + string(withdrawAccSelect)  
+        Console.WriteLine ("-------------------- WITHDRAW --------------------")   
+        let withdrawAccName = "000" + string(SelectAccount())  
 
         match withdrawAccName with
         | x when x = Account1.AccountNumber -> Withdraw Account1
@@ -120,16 +124,7 @@ module Task123 =
         Console.WriteLine()
         
         Console.WriteLine ("-------------------- DEPOSIT --------------------")
-        Console.Write("Which account would you like to deposit to (1-6): ")
-        let mutable depositAccSelect = int(Console.ReadLine())
-
-        while depositAccSelect > 6 || depositAccSelect <= 0 do
-            printfn"INVALID ACCOUNT NAME"
-            Console.Write("Which account would you like to deposit to (1-6): ")
-            depositAccSelect <- int(Console.ReadLine())
-
-        let depositAccName = "000" + string(depositAccSelect)  
-
+        let depositAccName = "000" + string(SelectAccount())  
 
         match depositAccName with
         | x when x = Account1.AccountNumber -> Deposit Account1

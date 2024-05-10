@@ -92,8 +92,7 @@ module Task123 =
         let highAccountBalance = snd partitionAccounts
 
         Console.WriteLine ("---------------- LIST ALL ACCOUNTS ---------------")
-        for i in accounts do 
-            i.Print
+        List.iter (fun (i : Account)-> i.Print) accounts
 
         //task 1 output
 
@@ -139,19 +138,15 @@ module Task123 =
         //task 2 output
         Console.WriteLine()
         Console.WriteLine ("--- LIST ALL ACCOUNTS PLUS QUICK CHECK BALANCE ---")
-        for i in accounts do 
-            i.Print
-            CheckAccount i.Balance
+        List.iter (fun (i : Account)-> i.Print; CheckAccount i.Balance) accounts
 
         //task 3 output
         Console.WriteLine()
         Console.WriteLine ("----------- ACCOUNTS WITH LESS THEN 50 -----------")
-        for i in lowAccountBalance do
-            i.Print
-
+        List.iter (fun (i : Account)-> i.Print) lowAccountBalance
+        
         Console.WriteLine ("----------- ACCOUNTS WITH 50 OR MORE -------------")
-        for i in highAccountBalance do
-            i.Print
+        List.iter (fun (i : Account)-> i.Print) highAccountBalance
 
 
 // -------------------------------------------------------------------------------------- //
@@ -177,10 +172,9 @@ module Task4 =
     let lockobj = new Object()
 
     //method for displaying the list of Tickets
-    let DisplayTicket() =
+    let DisplayTickets() =
         Console.WriteLine ("-------------------- Tickets --------------------")
-        for i in tickets do
-            i.Print
+        List.iter (fun (i : Ticket)-> i.Print ) tickets
 
     //method for letting a customer book a seat
     let BookSeat() = 
@@ -188,7 +182,6 @@ module Task4 =
         //asking for cutomers name
         Console.Write("Enter customer name: ")
         let customerName = Console.ReadLine()
-
 
         // recursive function
         let rec SelectSeat() = 
@@ -207,10 +200,7 @@ module Task4 =
             
         //making the number of the seat selected line up with its postition in the list
         let selectedTicket =  tickets.[confirmedSeat - 1]
-
         Console.WriteLine()
-        
-        
         //checking the Ticket has a blank customer name, so it can be booked
         if selectedTicket.customer = "" then
                     selectedTicket.customer <- customerName
@@ -218,7 +208,7 @@ module Task4 =
                 else
                     printfn "                 SEAT NOT AVAILABLE" 
 
-        Console.WriteLine()
+        
         
 
     //method that has the full sequence of viewing tickets and then booking a seat
@@ -229,7 +219,7 @@ module Task4 =
         lock lockobj (fun() -> 
             Console.WriteLine ("################### " + thread + " ###################")
         
-            DisplayTicket()
+            DisplayTickets()
             BookSeat()
     
             Console.WriteLine ("################# " + thread + " END #################")
@@ -251,6 +241,6 @@ module Task4 =
         thread1.Join()
         thread2.Join()
 
-        DisplayTicket()
+        DisplayTickets()
 
 
